@@ -23,6 +23,14 @@ The browser tests use installed Microsoft Edge and start Vite automatically. On 
 
 Deploy the generated `dist` directory to any static web host. No backend or API keys are needed.
 
+## Deploy to GitHub Pages
+
+The workflow in [`.github/workflows/deploy-pages.yml`](.github/workflows/deploy-pages.yml) runs on pushes to `main` and can also be started manually. It uses Node.js 24, installs locked dependencies with `npm ci`, runs lint and the existing TypeScript/Vite production build, uploads `dist`, and deploys it in a separate job. A failed lint or build prevents deployment.
+
+## Styling
+
+Use Tailwind's default utilities, colors, spacing, typography, and responsive breakpoints in the components. No custom theme tokens or arbitrary design values are needed. `src/index.css` contains only the Tailwind import and shared base/accessibility rules; `src/components/Panda.css` preserves the existing CSS illustration.
+
 ## Behavior and limits
 
 - Quality is an encoder setting, not a target file-size percentage. Actual savings appear after processing.

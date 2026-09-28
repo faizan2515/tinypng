@@ -32,7 +32,7 @@ test("multi-file compression, actual ZIP entries, resizing, reset and individual
   await page.getByLabel("Output format").selectOption("image/webp");
   await page.getByLabel("Image dimensions").selectOption("50");
   await expect(page.getByText("2 of 2 images ready")).toBeVisible();
-  await expect(page.locator(".dimensions").first()).toHaveText("240 × 160");
+  await expect(page.getByTestId("image-dimensions").first()).toHaveText("240 × 160");
   const zipped = page.waitForEvent("download");
   await page.getByRole("button", { name: /Download all/ }).click();
   const zipDownload = await zipped;
@@ -74,7 +74,7 @@ test("drag and drop JPEG, quality adjustment, validation and failed decode", asy
       const transfer = new DataTransfer();
       transfer.items.add(new File([bytes], name, { type }));
       document
-        .querySelector(".dropzone")!
+        .querySelector('[data-testid="upload-dropzone"]')!
         .dispatchEvent(
           new DragEvent("drop", { bubbles: true, dataTransfer: transfer }),
         );
@@ -155,24 +155,31 @@ test("transparent PNG stays transparent, JPEG uses white, WebP input is supporte
   await expect(page.getByText("1 of 1 images ready")).toBeVisible();
 });
 
-test("desktop and mobile layout have no horizontal overflow", async ({
+test("responsive layout has no horizontal overflow before and after upload", async ({
   page,
 }) => {
   await page.setViewportSize({ width: 1440, height: 1000 });
   await page.goto("/");
   await page.screenshot({ path: "test-results/desktop.png", fullPage: true });
   await page.setViewportSize({ width: 390, height: 844 });
-  expect(
-    await page.evaluate(
-      () => document.documentElement.scrollWidth <= window.innerWidth,
-    ),
-  ).toBe(true);
+  for (const width of [320, 390, 640, 768, 1024, 1440]) {
+    await page.setViewportSize({ width, height: 844 });
+    expect(
+      await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth),
+      `Empty layout at ${width}px`,
+    ).toBe(true);
+  }
+  await page.setViewportSize({ width: 390, height: 844 });
   await page.screenshot({ path: "test-results/mobile.png", fullPage: true });
   await page.locator("input[type=file]").setInputFiles(await fixture(page));
   await expect(page.getByText("1 of 1 images ready")).toBeVisible();
-  expect(
-    await page.evaluate(
-      () => document.documentElement.scrollWidth <= window.innerWidth,
-    ),
-  ).toBe(true);
+  for (const width of [320, 390, 640, 768, 1024, 1440]) {
+    await page.setViewportSize({ width, height: 844 });
+    expect(
+      await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth),
+      `Results layout at ${width}px`,
+    ).toBe(true);
+  }
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.screenshot({ path: "test-results/mobile-results.png", fullPage: true });
 });

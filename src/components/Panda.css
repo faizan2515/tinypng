@@ -1,0 +1,183 @@
+/* CSS illustration shared by the hero and compact brand mark. */
+.panda {
+  width: 150px;
+  height: 195px;
+  position: relative;
+  z-index: 1;
+}
+.panda-face {
+  width: 139px;
+  height: 119px;
+  position: absolute;
+  top: 23px;
+  left: 5px;
+  border-radius: 48% 48% 44% 44%;
+  background: linear-gradient(145deg, #fffef9 50%, #e6e8df);
+  z-index: 3;
+  box-shadow: 0 5px 5px #1d302420;
+}
+.ear {
+  background: #293b33;
+  width: 45px;
+  height: 47px;
+  border-radius: 50%;
+  position: absolute;
+  top: 8px;
+  z-index: 2;
+  box-shadow: inset 5px 4px 0 #405046;
+}
+.ear.left {
+  left: 0;
+  transform: rotate(-25deg);
+}
+.ear.right {
+  right: 0;
+  transform: rotate(25deg);
+}
+.eye {
+  position: absolute;
+  width: 35px;
+  height: 43px;
+  background: #2e3c35;
+  border-radius: 50%;
+  top: 34px;
+}
+.eye.left {
+  left: 23px;
+  transform: rotate(28deg);
+}
+.eye.right {
+  right: 23px;
+  transform: rotate(-28deg);
+}
+.eye:after {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 12px;
+  background: white;
+  border-radius: 50%;
+  top: 10px;
+  left: 14px;
+  box-shadow: inset -3px -2px 0 #192a22;
+}
+.nose {
+  width: 19px;
+  height: 13px;
+  border-radius: 40% 40% 60% 60%;
+  background: #2e3c35;
+  position: absolute;
+  top: 73px;
+  left: 60px;
+}
+.mouth {
+  position: absolute;
+  left: 61px;
+  top: 83px;
+  width: 17px;
+  height: 11px;
+  border-bottom: 2px solid #324338;
+  border-radius: 50%;
+}
+.cheek {
+  position: absolute;
+  top: 76px;
+  width: 18px;
+  height: 9px;
+  border-radius: 50%;
+  background: #edd6cc88;
+}
+.cheek.left {
+  left: 18px;
+}
+.cheek.right {
+  right: 18px;
+}
+.panda-body {
+  position: absolute;
+  top: 103px;
+  left: 15px;
+  background: linear-gradient(
+    90deg,
+    #2a3e33 0 20%,
+    #f6f5ee 20% 76%,
+    #2a3e33 76%
+  );
+  width: 123px;
+  height: 91px;
+  border-radius: 45% 45% 42% 42%;
+  box-shadow: 0 11px 8px #263b3215;
+}
+.paw {
+  position: absolute;
+  bottom: 0;
+  width: 48px;
+  height: 36px;
+  background: #293b33;
+  border-radius: 50%;
+  z-index: 4;
+}
+.paw.left {
+  left: 0;
+  transform: rotate(-20deg);
+}
+.paw.right {
+  right: 0;
+  transform: rotate(20deg);
+}
+.bamboo {
+  position: absolute;
+  font-size: 72px;
+  z-index: 5;
+  right: -22px;
+  top: 87px;
+  transform: rotate(-25deg);
+  filter: saturate(0.55);
+}
+.panda.small {
+  width: 33px;
+  height: 32px;
+  flex-shrink: 0;
+}
+.small .panda-face {
+  width: 30px;
+  height: 25px;
+  left: 1px;
+  top: 6px;
+  box-shadow: none;
+  border: 1px solid #e0e2d7;
+}
+.small .ear {
+  width: 12px;
+  height: 13px;
+  top: 1px;
+  box-shadow: none;
+}
+.small .eye {
+  width: 8px;
+  height: 10px;
+  top: 6px;
+}
+.small .eye.left {
+  left: 4px;
+}
+.small .eye.right {
+  right: 4px;
+}
+.small .eye:after {
+  width: 3px;
+  height: 3px;
+  top: 2px;
+  left: 3px;
+  box-shadow: none;
+}
+.small .nose {
+  width: 5px;
+  height: 4px;
+  top: 15px;
+  left: 12px;
+}
+.small .mouth,
+.small .cheek {
+  display: none;
+}
